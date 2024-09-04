@@ -7,7 +7,7 @@ import 'package:weather_mate/widgets/error_widget.dart';
 
 import '../models/weather_model.dart';
 import '../providers/weather_provider.dart';
-import '../utils/get_formatted_time.dart';
+import '../utils/get_formatted_datetime.dart';
 
 class DailyWidget extends ConsumerWidget {
   const DailyWidget({super.key});

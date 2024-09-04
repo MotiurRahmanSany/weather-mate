@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:weather_mate/utils/get_formatted_time.dart';
+import 'package:weather_mate/utils/get_formatted_datetime.dart';
 import 'package:weather_mate/widgets/error_widget.dart';
 
 import '../helper/format_temp.dart';
