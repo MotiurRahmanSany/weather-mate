@@ -20,7 +20,7 @@ class CurrentMoreDetailsWidget extends ConsumerWidget {
         return _buildCurrentMoreDetailsWidget(context, weather, ref);
       },
       error: (err, st) {
-        return ShowErrorToUser();
+        return const ShowErrorToUser();
       },
       loading: () {
         return _buildCurrentMoreDetailsWidget(context, null, ref);

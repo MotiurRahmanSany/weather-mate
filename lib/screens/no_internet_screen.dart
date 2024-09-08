@@ -1,33 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class NoInternetScreen extends StatelessWidget {
+
+class NoInternetScreen extends ConsumerWidget {
   const NoInternetScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
       body: Center(
         child: Padding(
-          padding: EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
                 Icons.wifi_off,
                 size: 100,
-                color: Colors.red,
+                color: Theme.of(context).colorScheme.error,
               ),
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 'No Internet Connection',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20),
-              Text(
-                'Please check your internet connection and try restarting the app',
+              const SizedBox(height: 20),
+              const Text(
+                'Please check your internet connection and try again',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,

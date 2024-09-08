@@ -20,8 +20,7 @@ class DailyWidget extends ConsumerWidget {
         return _buildDailyWidget(context, weather, false, ref);
       },
       error: (err, st) {
-        return ShowErrorToUser(
-        );
+        return const ShowErrorToUser();
       },
       loading: () {
         return _buildDailyWidget(context, null, true, ref);
@@ -89,11 +88,19 @@ class DailyWidget extends ConsumerWidget {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 30,
-                                  height: 30,
-                                  child: Image.asset(
-                                    'assets/weather/${weather.daily![index].weather![0].icon}.png',
-                                    height: 30,
+                                  // width: 30,
+                                  // height: 30,
+                                  child: Column(
+                                    children: [
+                                      Image.asset(
+                                        'assets/weather/${weather.daily![index].weather![0].icon}.png',
+                                        height: 30,
+                                      ),
+                                      Text(
+                                        weather.daily![index].weather![0]
+                                            .description!,
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 Text(

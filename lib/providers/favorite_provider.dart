@@ -22,7 +22,6 @@ class FavoriteLocationNotifier extends StateNotifier<List<FavoriteLocation>> {
 
   void addFavorite(
       double lat, double lon, WeatherData weather, Placemark place) {
-
     final isAlreadyInDatabase =
         state.indexWhere((loc) => loc.lat == lat && loc.lon == lon);
 
@@ -63,7 +62,7 @@ class FavoriteLocationNotifier extends StateNotifier<List<FavoriteLocation>> {
         .map((fav) => FavoriteLocation.fromJson(json.decode(fav)))
         .toList();
 
-    await _updateFavoritesWeather();
+    await _refreshFavoritesWeather();
   }
 
   void _saveFavoriteLocation() async {
@@ -76,8 +75,8 @@ class FavoriteLocationNotifier extends StateNotifier<List<FavoriteLocation>> {
 
   static final _apiService = ApiService();
 
-  Future<void> _updateFavoritesWeather() async {
-    final updatedWeather = await Future.wait(state.map((fav) async {
+  Future<void> _refreshFavoritesWeather() async {
+    final refreshWeather = await Future.wait(state.map((fav) async {
       // fetch weather data for each favorite location
       final weather = await _apiService.fetchWeatherData(fav.lat, fav.lon);
 
@@ -92,8 +91,6 @@ class FavoriteLocationNotifier extends StateNotifier<List<FavoriteLocation>> {
       return fav;
     }));
 
-    state = updatedWeather;
-
-    _saveFavoriteLocation();
+    state = refreshWeather;
   }
 }

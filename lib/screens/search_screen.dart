@@ -4,8 +4,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weather_mate/providers/connection_provider.dart';
-import 'package:weather_mate/services/connection_service.dart';
 
 import '../providers/area_provider.dart';
 import '../providers/location_provider.dart';
@@ -24,7 +22,7 @@ class SearchScreen extends ConsumerStatefulWidget {
 class _SearchScreenState extends ConsumerState<SearchScreen> {
   final _inputController = TextEditingController();
   Timer? _debounce;
-  final _connectionService = ConnectionService();
+  // final _connectionService = ConnectionService();
 
   bool hasSearched = false;
 
@@ -37,7 +35,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
   void _performSearch(String value) {
     if (_debounce?.isActive ?? false) _debounce!.cancel();
-    _debounce = Timer(const Duration(milliseconds: 500), () async {
+    _debounce = Timer(const Duration(milliseconds: 300), () async {
       setState(() {
         if (value.isEmpty) {
           hasSearched = false;
@@ -45,9 +43,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           hasSearched = true;
         }
       });
-      await _connectionService.isConnected()
-          ? ref.refresh(areaProvider(value))
-          : ref.read(connectionProvider.notifier).state = false;
+      ref.refresh(areaProvider(value));
     });
   }
 
@@ -69,7 +65,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
             child: Column(
               children: [
                 const Text(
-                  'Search for a location of which you want to know the current weather',
+                  'Search for a location you want to know the current weather of',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 18,

@@ -19,7 +19,7 @@ class CurrentWidget extends ConsumerWidget {
         return _buildCurrentWidget(context, weather, false, ref);
       },
       error: (err, st) {
-        return ShowErrorToUser();
+        return const ShowErrorToUser();
       },
       loading: () {
         return _buildCurrentWidget(context, null, true, ref);
@@ -51,7 +51,9 @@ class CurrentWidget extends ConsumerWidget {
                         height: 80,
                         width: 80,
                       )
-                    : const CircleAvatar(),
+                    : const CircleAvatar(
+                      radius: 40,
+                    ),
                 // const SizedBox(
                 //   width: 10,
                 // ),
