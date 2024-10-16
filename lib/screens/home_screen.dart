@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:weather_mate/providers/internet_provider.dart';
 import 'package:weather_mate/screens/no_internet_screen.dart';
 import 'package:weather_mate/widgets/custom_navigation.dart';
-
-import '../providers/internet_provider.dart';
 import '../providers/screen_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -14,12 +13,20 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final screens = ref.watch(screenProvider);
     final currentScreenIndex = ref.watch(screenIndexProvider);
-    final internetState = ref.watch(internetProvider);
-    return internetState.when(
+    final hasData = ref.watch(hasDataProvider);
+    final onInternetStatusChange = ref.watch(internetStatusChangeProvider);
+
+    if (hasData) {
+      return Scaffold(
+        body: screens[currentScreenIndex],
+        bottomNavigationBar: const CustomNavigation(),
+      );
+    } else {
+      return onInternetStatusChange.when(
         data: (state) {
           return state == InternetStatus.connected
               ? Scaffold(
-                  body: SafeArea(child: screens[currentScreenIndex]),
+                  body: screens[currentScreenIndex],
                   bottomNavigationBar: const CustomNavigation(),
                 )
               : const NoInternetScreen();
@@ -27,7 +34,8 @@ class HomeScreen extends ConsumerWidget {
         error: (err, st) {
           return const NoInternetScreen();
         },
-        loading: () => const Text(''));
-
+        loading: () => const Scaffold(),
+      );
+    }
   }
 }

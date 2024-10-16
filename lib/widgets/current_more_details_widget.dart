@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:weather_mate/utils/get_formatted_datetime.dart';
 import 'package:weather_mate/widgets/error_widget.dart';
 
-import '../helper/format_temp.dart';
+import '../utils/format_temp.dart';
 import '../models/weather_model.dart';
 import '../providers/weather_provider.dart';
 
@@ -63,7 +63,7 @@ class CurrentMoreDetailsWidget extends ConsumerWidget {
                         _buildDetailsItem(
                           context,
                           title: 'Feels Like',
-                          value: formatTemperature(
+                          value: getFormattedTemperature(
                             ref,
                             weather.current!.feelsLike!.toInt(),
                           ),

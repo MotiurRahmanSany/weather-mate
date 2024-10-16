@@ -1,12 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive/hive.dart';
+import 'package:weather_mate/core/constants/hive_constants.dart';
 import 'package:weather_mate/models/weather_model.dart';
 
 import '../models/favorite_location.dart';
-import '../services/api_service.dart';
+
+
 
 final favoriteProvider =
     StateNotifierProvider<FavoriteLocationNotifier, List<FavoriteLocation>>(
@@ -16,9 +16,8 @@ final favoriteProvider =
 
 class FavoriteLocationNotifier extends StateNotifier<List<FavoriteLocation>> {
   FavoriteLocationNotifier() : super([]) {
-    _loadFavoriteLocation();
+    _loadFavoriteLocationsFromDB();
   }
-  static const String key = 'favoritelocations';
 
   void addFavorite(
       double lat, double lon, WeatherData weather, Placemark place) {
@@ -26,11 +25,14 @@ class FavoriteLocationNotifier extends StateNotifier<List<FavoriteLocation>> {
         state.indexWhere((loc) => loc.lat == lat && loc.lon == lon);
 
     if (isAlreadyInDatabase != -1) {
-      state[isAlreadyInDatabase] = state[isAlreadyInDatabase].copyWith(
+      final updatedFav = state[isAlreadyInDatabase].copyWith(
         temp: weather.current!.temp!,
         icon: weather.current!.weather![0].icon,
         description: weather.current!.weather![0].description,
       );
+      state[isAlreadyInDatabase] = updatedFav;
+      _saveFavoriteLocationInDB(updatedFav);
+      
     } else {
       final fav = FavoriteLocation(
         lat: lat,
@@ -41,10 +43,10 @@ class FavoriteLocationNotifier extends StateNotifier<List<FavoriteLocation>> {
         description: weather.current!.weather![0].description,
         icon: weather.current!.weather![0].icon,
       );
-      state = [...state, fav];
+      state = [fav, ...state];
+    _saveFavoriteLocationInDB(fav);
     }
 
-    _saveFavoriteLocation();
   }
 
   void removeFavorite(FavoriteLocation fav) {
@@ -52,45 +54,32 @@ class FavoriteLocationNotifier extends StateNotifier<List<FavoriteLocation>> {
         .where((loc) => (loc.lat != fav.lat && loc.lon != fav.lon))
         .toList();
 
-    _saveFavoriteLocation();
+    _removeFavoriteLocationFromDB(fav.id);
   }
 
-  Future<void> _loadFavoriteLocation() async {
-    final prefs = await SharedPreferences.getInstance();
-    final favoriteLocations = prefs.getStringList(key) ?? [];
-    state = favoriteLocations
-        .map((fav) => FavoriteLocation.fromJson(json.decode(fav)))
-        .toList();
-
-    await _refreshFavoritesWeather();
+  void clearFavorites() {
+    state = [];
+    _clearFavoriteLocationsFromDB();
   }
 
-  void _saveFavoriteLocation() async {
-    final prefs = await SharedPreferences.getInstance();
-    final favoriteLocations =
-        state.map((fav) => json.encode(fav.toJson())).toList();
+  // ! Hive Operations for favorite locations
 
-    prefs.setStringList(key, favoriteLocations);
+  final favoriteLocationBox =
+      Hive.box<FavoriteLocation>(HiveConstants.favoriteLocationsBoxName);
+
+  void _loadFavoriteLocationsFromDB() {
+    state = favoriteLocationBox.values.toList().cast<FavoriteLocation>();
   }
 
-  static final _apiService = ApiService();
+  void _saveFavoriteLocationInDB(FavoriteLocation fav) {
+    favoriteLocationBox.put(fav.id, fav);
+  }
 
-  Future<void> _refreshFavoritesWeather() async {
-    final refreshWeather = await Future.wait(state.map((fav) async {
-      // fetch weather data for each favorite location
-      final weather = await _apiService.fetchWeatherData(fav.lat, fav.lon);
+  void _removeFavoriteLocationFromDB(String favId) {
+    favoriteLocationBox.delete(favId);
+  }
 
-      if (weather != null) {
-        return fav.copyWith(
-          temp: weather.current!.temp,
-          description: weather.current!.weather![0].description,
-          icon: weather.current!.weather![0].icon,
-        );
-      }
-
-      return fav;
-    }));
-
-    state = refreshWeather;
+  void _clearFavoriteLocationsFromDB() {
+    favoriteLocationBox.clear();
   }
 }

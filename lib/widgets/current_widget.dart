@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:weather_mate/helper/format_temp.dart';
+import 'package:weather_mate/utils/format_temp.dart';
 import 'package:weather_mate/widgets/current_details_widget.dart';
 import 'package:weather_mate/widgets/error_widget.dart';
 
@@ -52,38 +52,37 @@ class CurrentWidget extends ConsumerWidget {
                         width: 80,
                       )
                     : const CircleAvatar(
-                      radius: 40,
-                    ),
-                // const SizedBox(
-                //   width: 10,
-                // ),
-                const Spacer(),
-                Text.rich(
-                  TextSpan(
-                    text: weather != null
-                        ? formatTemperature(ref, weather.current!.temp!)
-                        : 'Loading...',
-                    style: const TextStyle(
-                      fontSize: 60,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: weather != null
-                            ? '${weather.current!.weather![0].description}'
-                            : '...',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Theme.of(context)
-                              .colorScheme
-                              .onSurface
-                              .withOpacity(.6),
-                        ),
+                        radius: 40,
                       ),
-                    ],
-                  ),
+                const Spacer(),
+                Expanded(
+                  child: Column(
+                    children: [
+                    Text(
+                      weather != null
+                          ? getFormattedTemperature(ref, weather.current!.temp!)
+                          : 'Load',
+                      style: const TextStyle(
+                        fontSize: 50,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      weather != null
+                          ? '${weather.current!.weather![0].description}'
+                          : 'description',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withOpacity(.6),
+                      ),
+                    ),
+                  ]),
                 ),
+                const SizedBox(width: 15),
               ],
             ),
             const CurrentDetailsWidget(),

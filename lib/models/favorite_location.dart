@@ -1,15 +1,32 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class FavoriteLocation {
+import 'package:hive/hive.dart';
+import 'package:uuid/uuid.dart';
+part 'favorite_location.g.dart';
+
+const _uuid = Uuid();
+
+@HiveType(typeId: 6)
+class FavoriteLocation extends HiveObject {
+  @HiveField(0)
   final String city;
+  @HiveField(1)
   final double lat;
+  @HiveField(2)
   final double lon;
+  @HiveField(3)
   final String country;
+  @HiveField(4)
   final int? temp;
+  @HiveField(5)
   final String? description;
+  @HiveField(6)
   final String? icon;
+  @HiveField(7)
   bool isCurrent;
+  @HiveField(8)
+  final String id;
 
   FavoriteLocation({
     required this.city,
@@ -20,8 +37,7 @@ class FavoriteLocation {
     this.description,
     this.icon,
     this.isCurrent = false,
-  });
-
+  }) : id = _uuid.v4();
 
   FavoriteLocation copyWith({
     String? city,
@@ -65,7 +81,8 @@ class FavoriteLocation {
       lon: map['lon'] as double,
       country: map['country'] as String,
       temp: map['temp'] != null ? map['temp'] as int : null,
-      description: map['description'] != null ? map['description'] as String : null,
+      description:
+          map['description'] != null ? map['description'] as String : null,
       icon: map['icon'] != null ? map['icon'] as String : null,
       isCurrent: map['isCurrent'] as bool,
     );
@@ -73,6 +90,6 @@ class FavoriteLocation {
 
   String toJson() => json.encode(toMap());
 
-  factory FavoriteLocation.fromJson(String source) => FavoriteLocation.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  }
+  factory FavoriteLocation.fromJson(String source) =>
+      FavoriteLocation.fromMap(json.decode(source) as Map<String, dynamic>);
+}

@@ -26,6 +26,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
   bool hasSearched = false;
 
+  
+
   @override
   void dispose() {
     _debounce?.cancel();
@@ -49,6 +51,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     final areaState =
         hasSearched ? ref.watch(areaProvider(_inputController.text)) : null;
     return Scaffold(

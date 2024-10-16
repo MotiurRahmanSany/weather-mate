@@ -1,31 +1,27 @@
+import 'package:hive/hive.dart';
+
 import '../models/current_weather.dart';
 import '../models/daily_weather.dart';
 import '../models/hourly_weather.dart';
 
-class WeatherData {
-  // double? lat;
-  // double? lon;
-  // String? timezone;
-  // int? timezoneOffset;
+part 'weather_model.g.dart';
+
+@HiveType(typeId: 0)
+class WeatherData extends HiveObject {
+  @HiveField(0)
   Current? current;
+  @HiveField(1)
   List<Hourly>? hourly;
+  @HiveField(2)
   List<Daily>? daily;
 
-  WeatherData(
-      {
-      // this.lat,
-      // this.lon,
-      // this.timezone,
-      // this.timezoneOffset,
-      this.current,
-      this.hourly,
-      this.daily});
+  WeatherData({
+    this.current,
+    this.hourly,
+    this.daily,
+  });
 
   WeatherData.fromJson(Map<String, dynamic> json) {
-    // lat = json['lat'];
-    // lon = json['lon'];
-    // timezone = json['timezone'];
-    // timezoneOffset = json['timezone_offset'];
     current =
         json['current'] != null ? Current.fromJson(json['current']) : null;
     if (json['hourly'] != null) {
@@ -44,10 +40,7 @@ class WeatherData {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    // data['lat'] = lat;
-    // data['lon'] = lon;
-    // data['timezone'] = timezone;
-    // data['timezone_offset'] = timezoneOffset;
+
     if (current != null) {
       data['current'] = current!.toJson();
     }
@@ -60,5 +53,3 @@ class WeatherData {
     return data;
   }
 }
-
-

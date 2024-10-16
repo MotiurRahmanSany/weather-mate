@@ -1,13 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive/hive.dart';
+import 'package:weather_mate/core/constants/hive_constants.dart';
 
 enum TemperatureUnit { celsius, fahrenheit }
 
 final temperatureUnitProvider =
     StateNotifierProvider<TemperatureUnitNotifier, TemperatureUnit>(
         (ref) => TemperatureUnitNotifier());
-
-const String unitKey = 'tempUnit';
 
 class TemperatureUnitNotifier extends StateNotifier<TemperatureUnit> {
   TemperatureUnitNotifier() : super(TemperatureUnit.celsius) {
@@ -19,15 +18,15 @@ class TemperatureUnitNotifier extends StateNotifier<TemperatureUnit> {
     _saveTemperatureUnit(unit == TemperatureUnit.celsius ? 'C' : 'F');
   }
 
-  void _loadTemperatureUnit() async {
-    final prefs = await SharedPreferences.getInstance();
-    final tempUnit = prefs.getString(unitKey) ?? 'C';
+  final prefBox = Hive.box<String>(HiveConstants.prefBoxName);
+
+  void _loadTemperatureUnit() {
+    final tempUnit = prefBox.get(HiveConstants.unitKey, defaultValue: 'C');
     state =
         tempUnit == 'C' ? TemperatureUnit.celsius : TemperatureUnit.fahrenheit;
   }
 
-  void _saveTemperatureUnit(String unit) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(unitKey, unit);
+  void _saveTemperatureUnit(String unit) {
+    prefBox.put(HiveConstants.unitKey, unit);
   }
 }

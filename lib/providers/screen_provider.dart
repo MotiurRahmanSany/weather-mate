@@ -11,4 +11,4 @@ final screenProvider = Provider((ref) => [
       const SearchScreen(),
       const FavoriteScreen(),
       const PreferenceScreen(),
-    ]);
+  ]);

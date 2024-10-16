@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:weather_mate/helper/format_temp.dart';
+import 'package:weather_mate/utils/format_temp.dart';
 import 'package:weather_mate/widgets/error_widget.dart';
 
 import '../models/weather_model.dart';
@@ -87,7 +87,7 @@ class HourlyWidget extends ConsumerWidget {
                                 'assets/weather/${weather.hourly![index].weather![0].icon}.png',
                                 width: 40),
                             Text(
-                              formatTemperature(
+                              getFormattedTemperature(
                                 ref,
                                 weather.hourly![index].temp!,
                               ),

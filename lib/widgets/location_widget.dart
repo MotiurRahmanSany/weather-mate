@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:weather_mate/utils/get_location_name.dart';
 import 'package:weather_mate/widgets/error_widget.dart';
 
 import '../providers/location_provider.dart';
@@ -46,8 +47,8 @@ class LocationWidget extends ConsumerWidget {
               alignment: Alignment.topLeft,
               child: Text(
                 location != null
-                    ? location.locality ?? location.administrativeArea!
-                    : 'Location Loading...',
+                    ? getLocationName(location)
+                    : 'Location',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                   fontSize: 35,

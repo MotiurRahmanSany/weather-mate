@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:weather_mate/helper/format_temp.dart';
+import 'package:weather_mate/utils/format_temp.dart';
 import 'package:weather_mate/widgets/error_widget.dart';
 
 import '../models/weather_model.dart';
@@ -76,6 +76,7 @@ class DailyWidget extends ConsumerWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 5),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 SizedBox(
                                   width: 80,
@@ -91,6 +92,7 @@ class DailyWidget extends ConsumerWidget {
                                   // width: 30,
                                   // height: 30,
                                   child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Image.asset(
                                         'assets/weather/${weather.daily![index].weather![0].icon}.png',
@@ -104,7 +106,7 @@ class DailyWidget extends ConsumerWidget {
                                   ),
                                 ),
                                 Text(
-                                  '${formatTemperature(ref, weather.daily![index].temp!.max!, showUnit: false)} / ${formatTemperature(ref, weather.daily![index].temp!.min!, showUnit: false)}',
+                                  '${getFormattedTemperature(ref, weather.daily![index].temp!.max!, showUnit: false)} / ${getFormattedTemperature(ref, weather.daily![index].temp!.min!, showUnit: false)}',
                                 ),
                               ],
                             ),

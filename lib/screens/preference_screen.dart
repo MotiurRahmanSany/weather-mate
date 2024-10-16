@@ -42,6 +42,8 @@ class PreferenceScreen extends ConsumerWidget {
     );
   }
 
+  
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentTheme = ref.watch(themeProvider);

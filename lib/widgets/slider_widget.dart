@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-import 'package:weather_mate/helper/format_temp.dart';
+import 'package:weather_mate/utils/format_temp.dart';
 
 import '../widgets/error_widget.dart';
 import '../models/weather_model.dart';
@@ -94,7 +94,7 @@ class SliderWidget extends ConsumerWidget {
                       ),
                       TextSpan(text: 'Feels Like: ', children: [
                         TextSpan(
-                          text: formatTemperature(
+                          text: getFormattedTemperature(
                             ref,
                             weather.current!.feelsLike!.toInt(),
                             showUnit: false,

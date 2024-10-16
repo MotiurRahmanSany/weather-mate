@@ -1,11 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_mate/providers/services_provider.dart';
 
 import '../models/area_model.dart';
-import '../services/api_service.dart';
-
-final _apiService = ApiService();
 
 final areaProvider =
     FutureProvider.autoDispose.family<List<Area>?, String>((ref, area) async {
-  return await _apiService.fetchAreas(area);
+  return await ref.watch(apiServiceProvider).fetchAreas(area);
 });
