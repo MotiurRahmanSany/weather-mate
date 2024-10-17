@@ -12,20 +12,25 @@ Welcome to **Weather Mate**, your reliable and intuitive weather companion for a
 
 ## Screenshots 📸
 
-- **Light Mode** 
-  ![Light Mode](assets/screenshots/light/l1.jpg) 
-  ![Light Mode](assets/screenshots/light/l1_2.jpg) 
-  ![Light Mode](assets/screenshots/light/l2.jpg) 
-  ![Light Mode](assets/screenshots/light/l3.jpg) 
-  ![Light Mode](assets/screenshots/light/l4.jpg) 
+### Light Mode
 
-- **Dark Mode**  
-  ![Dark Mode](assets/screenshots/dark/d1.jpg) 
-  ![Dark Mode](assets/screenshots/dark/d2.jpg) 
-  ![Dark Mode](assets/screenshots/dark/d3.jpg) 
-  ![Dark Mode](assets/screenshots/dark/d4.jpg)
-  ![Dark Mode](assets/screenshots/dark/d5.jpg)
+<p align="center">
+  <img src="assets/screenshots/light/l1.jpg" width="250">
+  <img src="assets/screenshots/light/l1_2.jpg" width="250">
+  <img src="assets/screenshots/light/l2.jpg" width="250">
+  <img src="assets/screenshots/light/l3.jpg" width="250">
+  <img src="assets/screenshots/light/l4.jpg" width="250">
+</p>
 
+### Dark Mode
+
+<p align="center">
+  <img src="assets/screenshots/dark/d1.jpg" width="250">
+  <img src="assets/screenshots/dark/d2.jpg" width="250">
+  <img src="assets/screenshots/dark/d3.jpg" width="250">
+  <img src="assets/screenshots/dark/d4.jpg" width="250">
+  <img src="assets/screenshots/dark/d5.jpg" width="250">
+</p>
 
 ## Technologies Used 🛠️
 
