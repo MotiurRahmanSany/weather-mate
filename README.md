@@ -37,7 +37,6 @@ Welcome to **Weather Mate**, your reliable and intuitive weather companion for a
 - **Flutter**: A powerful framework for building cross-platform mobile applications.
 - **Riverpod**: State management solution for efficient and scalable data handling.
 - **Hive**: Lightweight key-value database for local data storage.
-- **Lottie**: Delightful animations used throughout the app for a smooth and engaging user experience.
 - **OpenWeatherMap API**: Provides precise and reliable weather data globally.
 
 ## Getting Started 🚀
