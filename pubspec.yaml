@@ -93,6 +93,8 @@ flutter:
     - assets/icons/
     - assets/splash_screen/
     - assets/weather/
+    - assets/screenshots/light/
+    - assets/screenshots/dark/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
