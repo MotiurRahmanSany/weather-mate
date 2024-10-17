@@ -64,12 +64,6 @@ class WeatherScreen extends ConsumerWidget {
             const SizedBox(height: 5),
             const LocationWidget(),
             const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                ref.refresh(weatherProvider);
-              },
-              child: const Icon(Icons.refresh),
-            ),
             const CurrentWidget(),
             const SizedBox(height: 10),
             const HourlyWidget(),

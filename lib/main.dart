@@ -33,7 +33,6 @@ void main() async {
   await Hive.openBox<FavoriteLocation>(HiveConstants.favoriteLocationsBoxName);
   await Hive.openBox<String>(HiveConstants.prefBoxName);
   await Hive.openBox<bool>(HiveConstants.hasDataFetchedOnceBoxName);
-  await Hive.openBox<DateTime>(HiveConstants.refreshTimeBoxName);
 
 
   runApp(

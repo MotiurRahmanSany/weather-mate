@@ -10,40 +10,7 @@ import '../widgets/pref_tiles.dart';
 
 class PreferenceScreen extends ConsumerWidget {
   const PreferenceScreen({super.key});
-
-  void _showBuyMeACoffeeDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Support the Developer'),
-          content: const Text(
-            'If you like this app and want to support its development, you can buy me a coffee! '
-            'Click the button below to make a small donation and keep the project alive. Thank you!',
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-              child: const Text('Cancel'),
-            ),
-            ElevatedButton.icon(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-                // _launchURL('https://www.buymeacoffee.com/yourname'); // Replace with your actual link
-              },
-              icon: const Icon(Icons.coffee_outlined),
-              label: const Text('Buy me a coffee'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentTheme = ref.watch(themeProvider);
@@ -125,12 +92,6 @@ class PreferenceScreen extends ConsumerWidget {
                   ),
                 );
               },
-            ),
-            PrefTiles(
-              title: 'Buy me a coffee',
-              subtitle: 'Support developer',
-              icon: Icons.coffee_outlined,
-              onTap: () => _showBuyMeACoffeeDialog(context),
             ),
           ],
         ),

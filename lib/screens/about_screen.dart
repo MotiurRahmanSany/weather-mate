@@ -8,7 +8,7 @@ class AboutScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: (){
+          onPressed: () {
             Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios_new),
@@ -48,22 +48,27 @@ class AboutScreen extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                '• Accurate Weather Data: Weather Mate fetches real-time weather updates, including temperature, humidity, wind speed, and more.',
+                '• Accurate Weather Data: Weather Mate provides real-time weather updates, including temperature, humidity, wind speed, and more.',
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 8),
               Text(
-                '• Location-Based Forecasts: Automatically get the latest weather updates for your current location or search for forecasts in other cities worldwide.',
+                '• Location-Based Forecasts: Get weather updates for your current location or search for forecasts in other cities worldwide.',
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 8),
               Text(
-                '• Favorites List: Save your favorite locations to easily check the weather in places that matter most to you.',
+                '• Favorites List: Easily save and check the weather for your favorite locations.',
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 8),
               Text(
-                '• Customizable Preferences: Choose between Celsius and Fahrenheit for temperature readings, and switch between light and dark themes to suit your style.',
+                '• Offline Mode: Access previously loaded weather data when offline, ensuring you stay informed no matter the connection.',
+                style: TextStyle(fontSize: 16),
+              ),
+              SizedBox(height: 8),
+              Text(
+                '• Customizable Preferences: Switch between Celsius and Fahrenheit, and choose between light and dark themes.',
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 24),
@@ -76,12 +81,12 @@ class AboutScreen extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                'Weather Mate utilizes the OpenWeatherMap API to deliver precise and reliable weather data from around the globe.',
+                'Weather Mate uses the OpenWeatherMap API to deliver reliable and accurate weather data from around the globe.',
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 24),
               Text(
-                'Support the Developer:',
+                'Developed by Motiur Rahman Sany:',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -89,8 +94,20 @@ class AboutScreen extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                'Enjoying Weather Mate? Consider supporting the developer by buying a coffee!',
+                'Weather Mate was built with care and dedication by Motiur Rahman Sany, aiming to deliver a seamless and user-friendly weather experience. '
+                'If you enjoy the app and find it useful, feel free to support the development.',
                 style: TextStyle(fontSize: 16),
+              ),
+              SizedBox(height: 24),
+              Center(
+                child: Text(
+                  '© 2024 Motiur Rahman Sany',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.grey,
+                  ),
+                ),
               ),
             ],
           ),
