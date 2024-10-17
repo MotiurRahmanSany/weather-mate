@@ -74,6 +74,6 @@ To run Weather Mate from the source code:
 - **Favorites List**: Manage and view favorite locations for easy access to weather updates.
 - **Offline Mode**: If the app detects a lack of internet connection, it provides previously loaded weather data to keep users informed.
 
-## Developer 👨‍💻
+## Support 🌟
 
-Weather Mate was proudly developed by **[Motiur Rahman](https://www.linkedin.com/in/motiur-rahman-sany-405506272/)**. If you like this project, consider giving a star 🌟 to the repository and supporting the developer!
+If you like this project, consider giving a star 🌟 to the repository and supporting its development!
