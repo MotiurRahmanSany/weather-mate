@@ -46,11 +46,12 @@ Welcome to **Weather Mate**, your reliable and intuitive weather companion for a
 To install Weather Mate on your Android device:
 
 1. Go to the [Releases](https://github.com/MotiurRahmanSany/weather-mate/releases) page.
-2. Download the latest APK file (`weather_mate_v1.0.0.apk`).
+2. Download the latest APK file (`weather_mate_v1.0.1.apk`).
 3. Transfer the APK file to your Android device.
 4. Install the APK by opening the file. You may need to enable installation from unknown sources in your device settings.
 
 ### Option 2: Build from Source
+Make sure you have Flutter installed on your machine.
 
 To run Weather Mate from the source code:
 
@@ -73,6 +74,6 @@ To run Weather Mate from the source code:
 - **Favorites List**: Manage and view favorite locations for easy access to weather updates.
 - **Offline Mode**: If the app detects a lack of internet connection, it provides previously loaded weather data to keep users informed.
 
-## Support 🌟
+## Developer 👨‍💻
 
-If you like this project, consider giving a star 🌟 to the repository and supporting its development!
+Weather Mate is developed by **[Motiur Rahman](https://www.linkedin.com/in/motiur-rahman-sany-405506272/)**. If you like this project, consider giving a star 🌟 to the repository and supporting the developer!
