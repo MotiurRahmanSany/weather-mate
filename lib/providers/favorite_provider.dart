@@ -3,6 +3,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:hive/hive.dart';
 import 'package:weather_mate/core/constants/hive_constants.dart';
 import 'package:weather_mate/models/weather_model.dart';
+import 'package:weather_mate/utils/get_location_name.dart';
 
 import '../models/favorite_location.dart';
 
@@ -37,8 +38,8 @@ class FavoriteLocationNotifier extends StateNotifier<List<FavoriteLocation>> {
       final fav = FavoriteLocation(
         lat: lat,
         lon: lon,
-        city: place.locality ?? '',
-        country: place.country ?? '',
+        city: getLocationName(place),
+        country: place.country ?? 'Unknown Country',
         temp: weather.current!.temp,
         description: weather.current!.weather![0].description,
         icon: weather.current!.weather![0].icon,

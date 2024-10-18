@@ -79,6 +79,7 @@ class CurrentWidget extends ConsumerWidget {
                             .onSurface
                             .withOpacity(.6),
                       ),
+                      textAlign: TextAlign.center,
                     ),
                   ]),
                 ),

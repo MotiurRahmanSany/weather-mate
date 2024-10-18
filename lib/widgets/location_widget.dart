@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:weather_mate/utils/get_location_name.dart';
 import 'package:weather_mate/widgets/error_widget.dart';
 
 import '../providers/location_provider.dart';
+import '../utils/get_location_name.dart';
 
-class LocationWidget extends ConsumerWidget {
+class LocationWidget extends ConsumerStatefulWidget {
   const LocationWidget({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _LocationWidgetState();
+}
+
+class _LocationWidgetState extends ConsumerState<LocationWidget> {
+
+ @override
+  Widget build(BuildContext context) {
     final location = ref.watch(locationProvider);
 
     return location.when(
@@ -61,7 +67,7 @@ class LocationWidget extends ConsumerWidget {
               margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
               alignment: Alignment.topLeft,
               child: Text(
-                location != null ? location.country! : 'country ...',
+                location != null ? location.country ?? 'Unknown Country': 'country ...',
                 style: TextStyle(
                   fontSize: 14,
                   color: Theme.of(context).colorScheme.onSurface,

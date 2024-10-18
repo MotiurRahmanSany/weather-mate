@@ -12,17 +12,23 @@ class LocationService {
     }
 
     permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
+    if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
+
       permission = await Geolocator.requestPermission();
+
       if (permission == LocationPermission.denied) {
         return Future.error('Location permissions are denied');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return Future.error(
+      permission = await Geolocator.requestPermission();
+
+      if(permission == LocationPermission.deniedForever) {
+        return Future.error(
         'Location permissions are permanently denied, we cannot request permissions.',
       );
+      }
     }
 
     return await Geolocator.getCurrentPosition();
