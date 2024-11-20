@@ -24,14 +24,13 @@ class FavoriteLocationAdapter extends TypeAdapter<FavoriteLocation> {
       temp: fields[4] as int?,
       description: fields[5] as String?,
       icon: fields[6] as String?,
-      isCurrent: fields[7] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, FavoriteLocation obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.city)
       ..writeByte(1)
@@ -45,11 +44,7 @@ class FavoriteLocationAdapter extends TypeAdapter<FavoriteLocation> {
       ..writeByte(5)
       ..write(obj.description)
       ..writeByte(6)
-      ..write(obj.icon)
-      ..writeByte(7)
-      ..write(obj.isCurrent)
-      ..writeByte(8)
-      ..write(obj.id);
+      ..write(obj.icon);
   }
 
   @override

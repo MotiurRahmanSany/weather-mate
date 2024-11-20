@@ -30,7 +30,7 @@ void main() async {
 
   //! Opening Hive boxes
   await Hive.openBox<WeatherData>(HiveConstants.weatherDataBoxName);
-  await Hive.openBox<FavoriteLocation>(HiveConstants.favoriteLocationsBoxName);
+  await Hive.openBox<List<FavoriteLocation>>(HiveConstants.favoriteLocationsBoxName);
   await Hive.openBox<String>(HiveConstants.prefBoxName);
   await Hive.openBox<bool>(HiveConstants.hasDataFetchedOnceBoxName);
 

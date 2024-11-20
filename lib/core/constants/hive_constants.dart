@@ -11,4 +11,5 @@ class HiveConstants {
   static const String unitKey = 'unit';
   static const String weatherDataKey = 'weatherdata';
   static const String hasDataFetchedOnceKey = 'hasDataFetchedOnce';
+  static const String favoriteLocationsKey = 'favoriteLocations';
 }
